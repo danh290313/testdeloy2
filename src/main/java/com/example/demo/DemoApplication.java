@@ -62,7 +62,7 @@ public class DemoApplication {
 	}
 	
 	@DeleteMapping("user/{id}")
-	public ResponseEntity<Object> deleteUser(Long id) {
+	public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isEmpty())
 			return ResponseEntity.notFound().build();
