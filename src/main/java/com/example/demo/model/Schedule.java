@@ -1,0 +1,105 @@
+package com.example.demo.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+
+@Getter
+@Setter
+@Data
+@Table(name = "schedule")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class Schedule {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private double price;
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "movie_id")
+	@JsonManagedReference
+    private Movie movie;
+
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "branch_id")
+	@JsonManagedReference
+    private Branch branch;
+
+    @ManyToOne
+	@JoinColumn(name = "room_id")
+	@JsonManagedReference
+    private Room room;
+
+	// public int getId() {
+	// 	return id;
+	// }
+
+	// public void setId(int id) {
+	// 	this.id = id;
+	// }
+
+	// public LocalDate getStartDate() {
+	// 	return startDate;
+	// }
+
+	// public void setStartDate(LocalDate startDate) {
+	// 	this.startDate = startDate;
+	// }
+
+	// public LocalTime getStartTime() {
+	// 	return startTime;
+	// }
+
+	// public void setStartTime(LocalTime startTime) {
+	// 	this.startTime = startTime;
+	// }
+
+	// public double getPrice() {
+	// 	return price;
+	// }
+
+	// public void setPrice(double price) {
+	// 	this.price = price;
+	// }
+
+	// public Movie getMovie() {
+	// 	return movie;
+	// }
+
+	// public void setMovie(Movie movie) {
+	// 	this.movie = movie;
+	// }
+
+	// public Branch getBranch() {
+	// 	return branch;
+	// }
+
+	// public void setBranch(Branch branch) {
+	// 	this.branch = branch;
+	// }
+
+	// public Room getRoom() {
+	// 	return room;
+	// }
+
+	// public void setRoom(Room room) {
+	// 	this.room = room;
+	// }
+}
